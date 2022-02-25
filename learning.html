@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body class="hh">
+    <div id="dsp" class="hh">
+        <div class="hh">
+            <h1 class="hh">Create a To-Watch List |</h1>
+            <input type="text" placeholder="New Item" class="inp">
+            <button id="add">ADD</button>
+            <ol id="mylist" class="hh"></ol>
+        </div>
+        <div class="hh">
+            <h1 class="hh"> Make Bookings and Reservations |</h1>
+            <button class="hh" onclick="payment()">CLICK HERE TO PROCEED</button>
+           
+        </div>
+        <div class="hh">
+            <h1 class="hh">Checkout Trending  Movies <br> from Our Varieties of Blockbusters</h1>
+            <button onclick="movies()" class="hh">CLICK TO VIEW</button>
+        </div>
+    </div>
+    <div class="hh" align="center">
+        <h1 class="hh"><button onclick="hall()" class="hh" style="height: 10vh; width: 15%; margin-top: 100px; border: 2px solid tomato; border-radius: 10px;"><h1 class="hh">HALL</h1></button></h1>
+    </div>
+   
+    
+
+    <style>
+        *{
+            background-image: url(cnm/fanfare-main-image.jpg);
+        }
+        .hh{
+            background: transparent;
+            color: tomato;
+        }
+        .inp{
+            background: transparent;
+        }
+        .rem{
+            background: transparent;
+            color: tomato;
+        }
+        #dsp{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    </style>
+
+    <script>
+        payment=()=>{
+            location.href='pstack.html'
+        }
+        hall=()=>{
+            location.href='hall.html'
+        }
+        movies=()=>{
+            location.href= 'movieslayout.html'
+        }
+
+        $(function(){
+            $("#add").on("click",function(){
+                var val = $("input").val();
+                if(val !== ''){
+                    var elem = $("<li class='hh'></li>").text(val);
+                    $(elem).append("<button class='rem'>X</button>");
+                    $("#mylist").append(elem);
+                    window.localStorage.getItem("#mylist")
+                    $("input").val("");
+                    $(".rem").on("click",function(){
+                        $(this).parent().remove();
+                    });
+                   
+                    $("input").focus();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

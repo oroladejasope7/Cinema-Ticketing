@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        *{
+            background-image: url(cnm/824037100_jpg_crop_jpeg-1080x648.jpeg.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #hh{
+            background: transparent;
+            color: white;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .hh{
+            background: transparent;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+
+    <div id="hh"> 
+        <form id="paymentForm" class="hh">
+            <h1 class="hh">PAY SECURELY WITH PAYSTACK</h1>
+            <div class="form-group" id="hh">
+              <label for="email" id="hh">Email Address</label>
+              <input type="email" id="email-address" class="hh" required />
+            </div>
+            <div class="form-group" id="hh">
+              <label for="amount" class="hh">Amount</label>
+              <input type="tel" id="amount" class="hh" required />
+              NOTE:This is based on the number of seats,with a seat currently at NGN 2,000 without ticketing charges based on demand
+            </div>
+            <div class="form-group" id="hh">
+              <label for="first-name" id="hh">First Name</label>
+              <input type="text" class="hh" id="first-name" />
+            </div>
+            <div class="form-group" id="hh">
+              <label for="last-name" id="hh">Last Name</label>
+              <input type="text" class="hh" id="last-name" />
+            </div>
+            <div class="form-submit" id="hh">
+              <button type="submit" id="hh" onclick="payWithPaystack()"> Pay </button>
+            </div>
+        </form> 
+    </div>
+
+    <script>
+        const paymentForm = document.getElementById('paymentForm');
+        paymentForm.addEventListener("submit", payWithPaystack, false);
+        function payWithPaystack(e) {
+        e.preventDefault();
+        let handler = PaystackPop.setup({
+            key: 'pk_test_9ce439173349d80d5fc01c4b52e53c4158777f9e', // Replace with your public key
+            email: document.getElementById("email-address").value,
+            amount: document.getElementById("amount").value * 100,
+            // label: "Optional string that replaces customer email"
+            onClose: function(){
+            alert('Window closed.');
+            },
+            callback: function(response){
+            let message = 'Payment complete!Your seat(s) is/are booked already Reference: ' + response.reference;
+            alert(message);
+            }
+        });
+        handler.openIframe();
+        }
+    </script>
+</body>
+</html>

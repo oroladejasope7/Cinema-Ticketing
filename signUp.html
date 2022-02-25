@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cincss.css">
+    <title>Document</title>
+    <script>
+        signUp = () =>{
+            var user_name = document.getElementById('username').value;
+            var user_pswd = document.getElementById('password').value;
+            localStorage.setItem("user", JSON.stringify(user_name));
+            localStorage.setItem("pass", JSON.stringify(user_pswd));
+        }
+    </script>
+</head>
+<body>
+    <form action="login.html">
+        <div align="center">
+            <h1 class="tsp">LIGHTHOUSE CINEMA</h1> <hr>
+            <h4 class="tsp">Registration Page</h4> 
+            <p class="tsp">Choose your Username and Password:</p>
+            <label for="Username"><h5 class="tsp">Username</h5></label>
+            <input type="text" id="username">
+            <label for="password"><h5 class="tsp">Password</h5></label>
+            <input type="password" id="password">
+             <hr>
+            <button onclick="signUp()" class="tsp">Sign Up</button>
+        </div>
+       </form>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="cincss.css">
+    <title>Document</title>
+</head>
+<body>
+    <table align="center"><tr><td class="tsp">Username:</td><td><input type="text" id="uname"></td><td class="tsp">Password:</td><td><input type="password" id="pwd"></td><td>&nbsp;</td><td><button onclick="reg()">Submit</button></td></tr></table>
+    <table border="1" width="60%" align="center"><tr><td>S/N</td><td>Username</td><td>Password</td><td>Update</td><td>Delete</td></tr>
+    <tbody id="l">
+
+    </tbody>
+    </table>
+
+    <script>
+        var b = '';
+        if(window.localStorage.lTUser){
+            jUsers = window.localStorage.getItem("lTUser");
+            customers = JSON.parse(jUsers);
+            for(i=1; i<customers.alluser.length; i++)
+            {
+                b += "<tr><td>"+i+"</td><td>"+customers.alluser[i].username+"</td><td>"+customers.alluser[i].pwd+"</td><td><button>i</button></td><td><button class='rem'>X</button></td></tr>";   
+            }
+            l.innerHTML = b;
+        }
+    </script>
+    <script>
+        document.getElementById("uname").focus();
+        if(!window.localStorage.lTUser)
+        {
+            var customers = {"alluser":[]};
+        }
+        reg=()=>
+        {
+            if(window.localStorage.lTUser)
+            {
+                jUsers = window.localStorage.getItem("lTUser");
+                customers = JSON.parse(jUsers);
+            }
+            customers.alluser.push({"username":uname.value,"pwd": pwd.value});
+            console.log(customers);
+            sUser = JSON.stringify(customers);
+            window.localStorage.setItem("lTUser",sUser);
+            location.reload();
+        }
+        $(".rem").on("click",function(){
+            $("tr").eq(1).remove();
+        });
+    </script>
+</body>
+</html>
